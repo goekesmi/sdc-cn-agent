@@ -5,7 +5,7 @@
  */
 
 /*
- * Copyright (c) 2015, Joyent, Inc.
+ * Copyright (c) 2017, Joyent, Inc.
  */
 
 var bunyan = require('bunyan');
@@ -14,6 +14,7 @@ var fs = require('fs');
 var once = require('once');
 var os = require('os');
 var path = require('path');
+var tritonTracer = require('triton-tracer');
 var tty = require('tty');
 var util = require('util');
 var vasync = require('vasync');
@@ -52,6 +53,11 @@ function main() {
             + 'setting no_rabbit flag to false', e.message);
         agentConfig = { no_rabbit: false };
     }
+
+    // Setup tracing before we do any work
+    tritonTracer.init({
+        log: log
+    });
 
     if (!agentConfig.no_rabbit) {
         log.warn('"no_rabbit" flag is not true, cn-agent will now sleep');
@@ -105,11 +111,6 @@ function main() {
         };
 
         var app = new App(options);
-
-        // EXPERIMENTAL
-        if (agentConfig.fluentd_host) {
-            process.env.FLUENTD_HOST = agentConfig.fluentd_host;
-        }
 
         app.start();
     });
