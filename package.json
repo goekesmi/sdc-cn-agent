@@ -1,7 +1,7 @@
 {
   "name": "cn-agent",
   "description": "Triton Compute Node Agent",
-  "version": "1.5.4",
+  "version": "1.6.0",
   "author": "Joyent (joyent.com)",
   "private": true,
   "dependencies": {
@@ -25,7 +25,6 @@
     "sdc-clients": "git+https://github.com/joyent/node-sdc-clients.git#rfd-35-cls",
     "sdc-docker-build": "git+https://github.com/joyent/sdc-docker-build.git#af8bd3e",
     "semver": "2.2.1",
-    "shell-escape": "^0.2.0",
     "sprintf": "0.1.5",
     "tracker": "git+https://github.com/joyent/node-tracker.git#3a139906c9eb8d8684ac54cf54cd010315856042",
     "triton-tracer": "git+https://github.com/joshwilsdon/triton-tracer.git#rfd-35-cls",
